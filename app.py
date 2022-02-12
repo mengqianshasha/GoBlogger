@@ -51,7 +51,8 @@ class CommentForm(FlaskForm):
     submit = SubmitField(label='Submit Comment')
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@172.26.144.1:5432/postgres'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@172.26.144.1:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -280,6 +281,6 @@ def get_comments_by_post_id(post_id):
         comments[i] = [user, comment]
     return comments
 
+
 if __name__ == "__main__":
-    # app.run(host='0.0.0.0', port=5000)
-    app.run(debug=True)
+    app.run(port=5000)
